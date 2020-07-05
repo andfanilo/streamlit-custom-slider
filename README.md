@@ -2,6 +2,8 @@
 
 Source code coming with the blog post on link.
 
+![](./demo.gif)
+
 Checkout the branch you're interested in
 
 ```
