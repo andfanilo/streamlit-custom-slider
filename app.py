@@ -1,11 +1,10 @@
 import streamlit as st
 from streamlit_custom_slider import st_custom_slider
+from streamlit_custom_slider import st_range_slider
 
-st.title("Testing Streamlit custom components")
-label = st.sidebar.text_input('Label', 'Hello world')
-min_value, max_value = st.sidebar.slider("Range slider", 0, 100, (0, 50))
+v_custom = st_custom_slider('Hello world', 0, 100, 50, key="slider1")
+st.write(v_custom)
 
-v1 = st_custom_slider(label=label, min_value=min_value, max_value=max_value, key="slider1")
-st.write(v1)
-v2 = st_custom_slider(label=label, min_value=min_value, max_value=max_value, key="slider2")
-st.write(v2)
+# Add a range slider
+v_custom_range = st_range_slider('Hello world', 0, 100, (20, 60), key="slider2")
+st.write(v_custom_range)

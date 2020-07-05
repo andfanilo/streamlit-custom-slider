@@ -2,15 +2,27 @@ import React, { useEffect, useState } from "react"
 import { ComponentProps, Streamlit, withStreamlitConnection } from "./streamlit"
 import { Slider } from "baseui/slider"
 
-const CustomSlider = (props: ComponentProps) => {
-  /**
-   * Destructuring JSON objects is a good habit.
-   * This will look for label, minValue and maxValue keys
-   * to store them in separate variables.
-   */
-  const { label, minValue, maxValue } = props.args
+/**
+ * We can use a Typescript interface to destructure the arguments from Python
+ * and validate the types of the input
+ */
+interface PythonArgs {
+  label: string
+  minValue?: number
+  maxValue?: number
+  initialValue: number[]
+}
 
-  const [value, setValue] = useState([10])
+/**
+ * No more props manipulation in the code.
+ * We store props in state and pass value directly to underlying Slider
+ * and then back to Streamlit.
+ */
+const CustomSlider = (props: ComponentProps) => {
+  // Destructure using Typescript interface
+  // This ensures typing validation for received props from Python
+  const { label, minValue, maxValue, initialValue }: PythonArgs = props.args
+  const [value, setValue] = useState(initialValue)
 
   useEffect(() => Streamlit.setFrameHeight())
 
@@ -20,7 +32,7 @@ const CustomSlider = (props: ComponentProps) => {
       <Slider
         value={value}
         onChange={({ value }) => value && setValue(value)}
-        onFinalChange={({ value }) => console.log(value)}
+        onFinalChange={({ value }) => Streamlit.setComponentValue(value)}
         min={minValue}
         max={maxValue}
       />
