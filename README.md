@@ -1,6 +1,6 @@
 # Streamlit Custom Slider - Blog post
 
-Source code coming with the blog post on link.
+Source code for the [Streamlit Components tutorial](https://streamlit-components-tutorial.netlify.app).
 
 ![](./demo.gif)
 
