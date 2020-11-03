@@ -1,12 +1,15 @@
 import React, { useEffect } from "react"
-import { ComponentProps, withStreamlitConnection, Streamlit } from "./streamlit"
+import {
+  ComponentProps,
+  withStreamlitConnection,
+  Streamlit,
+} from "streamlit-component-lib"
 
-import {Bar, Line} from 'react-chartjs-2';
+import { Bar, Line } from "react-chartjs-2"
 
 const StreamlitChart = (props: ComponentProps) => {
-
   // Destructure arguments sent from Python
-  const {title, labels, data, chartType} = props.args;
+  const { title, labels, data, chartType } = props.args
 
   // Build data prop for Chart.js component
   const dataset = {
@@ -14,14 +17,14 @@ const StreamlitChart = (props: ComponentProps) => {
     datasets: [
       {
         label: title,
-        backgroundColor: 'rgba(255,99,132,0.2)',
-        borderColor: 'rgba(255,99,132,1)',
+        backgroundColor: "rgba(255,99,132,0.2)",
+        borderColor: "rgba(255,99,132,1)",
         borderWidth: 1,
-        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-        hoverBorderColor: 'rgba(255,99,132,1)',
-        data: data
-      }
-    ]
+        hoverBackgroundColor: "rgba(255,99,132,0.4)",
+        hoverBorderColor: "rgba(255,99,132,1)",
+        data: data,
+      },
+    ],
   }
 
   // Define callback when clicking on an element
@@ -32,17 +35,10 @@ const StreamlitChart = (props: ComponentProps) => {
 
   // Define a function which returns a JSX block depending on chartType prop
   const renderPlot = () => {
-    if (chartType === 'bar') {
-      return <Bar 
-        data={dataset} 
-        getElementAtEvent={handleClick} 
-      />
-    }
-    else if (chartType === 'line') {
-      return <Line 
-        data={dataset}
-        getElementAtEvent={handleClick} 
-      />
+    if (chartType === "bar") {
+      return <Bar data={dataset} getElementAtEvent={handleClick} />
+    } else if (chartType === "line") {
+      return <Line data={dataset} getElementAtEvent={handleClick} />
     }
   }
 
@@ -50,11 +46,7 @@ const StreamlitChart = (props: ComponentProps) => {
   useEffect(() => Streamlit.setFrameHeight())
 
   // Return the graph
-  return (
-    <div>
-      {renderPlot()}
-    </div>
-  )
+  return <div>{renderPlot()}</div>
 }
 
 export default withStreamlitConnection(StreamlitChart)
