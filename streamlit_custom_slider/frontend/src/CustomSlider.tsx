@@ -1,5 +1,9 @@
 import React, { useEffect } from "react"
-import { ComponentProps, Streamlit, withStreamlitConnection } from "./streamlit"
+import {
+  ComponentProps,
+  Streamlit,
+  withStreamlitConnection,
+} from "streamlit-component-lib"
 
 /**
  * Called by <CustomSlider />, renders the return value on screen.
