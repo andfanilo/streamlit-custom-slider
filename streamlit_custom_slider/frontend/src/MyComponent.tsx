@@ -3,7 +3,7 @@ import {
   withStreamlitConnection,
   StreamlitComponentBase,
   Streamlit,
-} from "./streamlit"
+} from "streamlit-component-lib"
 
 interface State {
   numClicks: number
