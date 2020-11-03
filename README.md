@@ -10,6 +10,13 @@ Checkout the branch you're interested in
 git checkout partx
 ```
 
+Install streamlit and custom library:
+
+```
+pip install streamlit
+pip install -e .
+```
+
 Install npm dependencies :
 
 ```
